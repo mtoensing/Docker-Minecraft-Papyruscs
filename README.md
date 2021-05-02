@@ -1,4 +1,6 @@
-# Docker Papyruscs Map Generator for Minecraft Bedrock
+# Docker PapyrusCS
+
+A map generator for Minecraft Bedrock worlds. 
 
 ## minimal example
 
