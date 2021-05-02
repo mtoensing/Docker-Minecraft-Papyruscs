@@ -1,6 +1,9 @@
 # Docker Papyruscs Map Generator for Minecraft Bedrock
 
 ## minimal example
+
+The myworld directory have to contain the "db" folder.
+
 ```
     docker run \
       --rm \
