@@ -9,16 +9,16 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /papyruscs
-RUN wget https://github.com/mjungnickel18/papyruscs/releases/download/v0.5.1/papyruscs-dotnetcore-0.5.1-linux64.zip
+ARG PAPYRUSCS_VERSION="0.5.1"
+RUN wget https://github.com/mjungnickel18/papyruscs/releases/latest/download/papyruscs-dotnetcore-${PAPYRUSCS_VERSION}-linux64.zip
 RUN unzip *.zip -d .
 RUN chmod +x /papyruscs/PapyrusCs
 
-
 WORKDIR /tmp/resourcepack
 RUN wget -O textures.zip https://aka.ms/resourcepacktemplate
-# COPY Vanilla_Resource_Pack_1.16.220.zip .
 RUN unzip *.zip -d .
 RUN mv /tmp/resourcepack/textures /papyruscs/textures
+RUN rm -r /tmp/resourcepack
 
 WORKDIR /tmp/world
 WORKDIR /tmp/export
@@ -28,7 +28,7 @@ USER bob
 
 ENV threads="1"
 ENV htmlfile="index.html" 
-ENV imageformat="webp" 
+ENV maxqueue="1"  
 ENV parameters=""
 
-ENTRYPOINT /papyruscs/PapyrusCs --world "/tmp/world/db" --output "/tmp/export" --htmlfile ${htmlfile} --threads ${threads} -f webp  ${parameters} 
+ENTRYPOINT /papyruscs/PapyrusCs --world "/tmp/world/db" --output "/tmp/export" --htmlfile ${htmlfile} --maxqueue ${maxqueue} --threads ${threads} ${parameters} 
