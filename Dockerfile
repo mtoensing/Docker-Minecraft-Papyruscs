@@ -21,5 +21,6 @@ USER bob
 
 ENV threads="2"
 ENV htmlfile="index.html" 
+ENV imageformat="webp" 
 
-ENTRYPOINT /papyruscs/PapyrusCs --world "/tmp/world/db" --output "/tmp/export" --htmlfile ${htmlfile} --threads ${threads}
+ENTRYPOINT /papyruscs/PapyrusCs --world "/tmp/world/db" --output "/tmp/export"  -f ${imageformat} --htmlfile ${htmlfile} --threads ${threads}
